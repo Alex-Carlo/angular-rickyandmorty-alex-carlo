@@ -11,14 +11,18 @@ import { selectDataCharacter } from './state/characters/character.selectors';
 })
 export class AppComponent implements OnInit {
   character$ = this.store$.select(selectDataCharacter);
-  data:Character;
+  data:any;
+  paginatoOptions:any;
   constructor(private store$: Store){
   }
   ngOnInit(): void {
     this.store$.dispatch(characterActions.loadCharacterData({page:1}));
-    this.character$.subscribe(data =>{
+    this.character$.subscribe(data => {
+      this.paginatoOptions = data.info;
       this.data = data.results;
     });
   }
-
+  handlePageEvent($event){
+  this.store$.dispatch(characterActions.loadCharacterData({page: $event.pageIndex+1}));
+  }
 }

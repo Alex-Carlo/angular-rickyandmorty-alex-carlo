@@ -10,8 +10,10 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { HttpClientModule} from "@angular/common/http";
 import { CharacterEffects } from './state/characters/character.effects';
-import { characterReducer } from './state/characters/character.reducers';
 import { REDUCER_KEY } from './state/app.state';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,9 @@ import { REDUCER_KEY } from './state/app.state';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    MatCardModule,
+    MatIconModule,
+    MatPaginatorModule,
     StoreModule.forRoot(REDUCER_KEY),
     StoreDevtoolsModule.instrument({ name:'TEST' }),
     EffectsModule.forRoot([CharacterEffects])
