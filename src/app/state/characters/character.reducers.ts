@@ -16,6 +16,10 @@ on(characterActions.loadCharacterDataSuccess, (state, { data }) => ({
 on(characterActions.loadCharacterDataFailed, (state) => ({
     ...state,
     characterDataLoading: false
+})),
+on(characterActions.loadOneCharacter, (state, { oneCharacter }) => ({
+  ...state,
+  oneCharacter: oneCharacter
 }))
 );
 

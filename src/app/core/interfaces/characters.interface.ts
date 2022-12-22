@@ -17,8 +17,8 @@ export interface Result {
   species: string;
   type: string;
   gender: string;
-  origin: Origin;
-  location: Location;
+  origin: Array<Origin>;
+  location: Array<Location>;
   image: string;
   episode:[];
   url: string;

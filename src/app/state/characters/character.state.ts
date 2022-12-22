@@ -4,10 +4,12 @@ export const CHARACTER_FEATURE_KEY = 'characters';
 
 export const initialCharacterState: CharacterState = {
   characterData: [],
-  characterDataLoading: false
+  characterDataLoading: false,
+  oneCharacter: []
 }
 
 export interface CharacterState {
-  characterData: any,
+  characterData: any;
   characterDataLoading: boolean;
+  oneCharacter: any;
 }

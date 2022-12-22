@@ -8,3 +8,12 @@ export const selectDataCharacter = createSelector(
   selectFeature,
   (state: CharacterState) => state.characterData
 );
+export const selectDataCharacterLoading = createSelector(
+  selectFeature,
+  (state: CharacterState) => state.characterDataLoading
+);
+
+export const selectOneCharacter = createSelector(
+ selectFeature,
+ (state: CharacterState) => state.oneCharacter
+);

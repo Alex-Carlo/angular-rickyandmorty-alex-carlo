@@ -1,7 +1,12 @@
-<app-character-card [data]="data"></app-character-card>
-<mat-paginator [length]="paginatoOptions.count"
-              [pageSize]="data.length"
+<app-header></app-header>
+<h1 *ngIf="isLoading">Cargando..</h1>
+<app-character-card *ngIf="!isLoading" [data]="data"></app-character-card>
+<mat-paginator [length]="paginatoOptions?.count"
+              [pageSize]="data?.length"
               aria-label="Select page"
-              (page)="handlePageEvent($event)"
-              >
+              (page)="handlePageEvent($event)">
 </mat-paginator>
+<app-footer></app-footer>
+<div class="" *ngIf="characterSelected">
+  <h1>{{characterSelected | json}}</h1>
+</div>

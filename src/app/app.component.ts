@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Character } from './core/interfaces/characters.interface';
 import { characterActions } from './state/characters/character.actions';
-import { selectDataCharacter } from './state/characters/character.selectors';
+import { selectDataCharacter, selectDataCharacterLoading, selectOneCharacter } from './state/characters/character.selectors';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +11,12 @@ import { selectDataCharacter } from './state/characters/character.selectors';
 })
 export class AppComponent implements OnInit {
   character$ = this.store$.select(selectDataCharacter);
+  oneCharacter$ = this.store$.select(selectOneCharacter);
+  dataCharacterLoading$ = this.store$.select(selectDataCharacterLoading);
   data:any;
   paginatoOptions:any;
+  characterSelected:any;
+  isLoading:boolean;
   constructor(private store$: Store){
   }
   ngOnInit(): void {
@@ -21,8 +25,16 @@ export class AppComponent implements OnInit {
       this.paginatoOptions = data.info;
       this.data = data.results;
     });
+    this.oneCharacter$.subscribe(data => {
+      this.characterSelected = data;
+    });
+    this.dataCharacterLoading$.subscribe((characterDataLoading) =>{
+        this.isLoading = characterDataLoading;
+        console.log(this.isLoading);
+
+    });
   }
   handlePageEvent($event){
-  this.store$.dispatch(characterActions.loadCharacterData({page: $event.pageIndex+1}));
+  this.store$.dispatch(characterActions.loadCharacterData({ page: $event.pageIndex + 1 }));
   }
 }

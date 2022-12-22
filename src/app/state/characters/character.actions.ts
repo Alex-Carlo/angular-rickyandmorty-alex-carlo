@@ -6,6 +6,7 @@ export enum CharactersActionTypes {
   loadCharacterData = `[Character] Load character`,
   loadCharacterDataSuccess = `[Character] Load character success`,
   loadCharacterDataFailed = `[Character] character failed`,
+  loadOneCharacter = `[Character] Load one character`,
 }
 
 export const loadCharacterData = createAction(
@@ -22,8 +23,14 @@ export const loadCharacterDataFailed = createAction(
   CharactersActionTypes.loadCharacterDataFailed
 );
 
+export const loadOneCharacter = createAction(
+  CharactersActionTypes.loadOneCharacter,
+  props<{ oneCharacter: Array<any> }>()
+);
+
 export const characterActions = {
   loadCharacterData,
   loadCharacterDataSuccess,
-  loadCharacterDataFailed
+  loadCharacterDataFailed,
+  loadOneCharacter
 }

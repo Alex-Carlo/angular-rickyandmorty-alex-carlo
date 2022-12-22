@@ -14,13 +14,19 @@ import { REDUCER_KEY } from './state/app.state';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { HomeComponent } from './pages/home/home.component';
+import { ListCharactersComponent } from './pages/list-characters/list-characters.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 @NgModule({
   declarations: [
     AppComponent,
     CharacterCardComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent,
+    ListCharactersComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +35,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatCardModule,
     MatIconModule,
     MatPaginatorModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatToolbarModule,
     StoreModule.forRoot(REDUCER_KEY),
     StoreDevtoolsModule.instrument({ name:'TEST' }),
     EffectsModule.forRoot([CharacterEffects])
