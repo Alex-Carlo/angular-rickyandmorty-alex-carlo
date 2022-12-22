@@ -1,6 +1,6 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { EffectsModule } from '@ngrx/effects';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
@@ -9,6 +9,9 @@ import { CharacterCardComponent } from './shared/character-card/character-card.c
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { HttpClientModule} from "@angular/common/http";
+import { CharacterEffects } from './state/characters/character.effects';
+import { characterReducer } from './state/characters/character.reducers';
+import { REDUCER_KEY } from './state/app.state';
 
 @NgModule({
   declarations: [
@@ -21,8 +24,9 @@ import { HttpClientModule} from "@angular/common/http";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ name:'TEST' })
+    StoreModule.forRoot(REDUCER_KEY),
+    StoreDevtoolsModule.instrument({ name:'TEST' }),
+    EffectsModule.forRoot([CharacterEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

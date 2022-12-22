@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, switchMap } from 'rxjs';
-import { Character, Result } from './core/interfaces/characters.interface';
-import { CharacterService } from './core/services/character.service';
+import { Character } from './core/interfaces/characters.interface';
 import { characterActions } from './state/characters/character.actions';
+import { selectDataCharacter } from './state/characters/character.selectors';
 
 @Component({
   selector: 'app-root',
@@ -11,16 +10,15 @@ import { characterActions } from './state/characters/character.actions';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  character$:Observable<Character>;
-  data:any;
-  constructor(private store$: Store, private characterService: CharacterService ){
+  character$ = this.store$.select(selectDataCharacter);
+  data:Character;
+  constructor(private store$: Store){
   }
   ngOnInit(): void {
-    this.character$ = this.characterService.getAllCharacter(1);
+    this.store$.dispatch(characterActions.loadCharacterData({page:1}));
     this.character$.subscribe(data =>{
       this.data = data.results;
     });
-    this.store$.dispatch(characterActions.loadCharacterData({page:1}));
   }
 
 }
