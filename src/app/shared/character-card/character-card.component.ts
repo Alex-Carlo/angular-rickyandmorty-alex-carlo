@@ -1,8 +1,7 @@
 import { Input } from '@angular/core';
-import { Output } from '@angular/core';
-import { EventEmitter } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { characterActions } from 'src/app/state/characters/character.actions';
@@ -13,14 +12,15 @@ import { characterActions } from 'src/app/state/characters/character.actions';
   styleUrls: ['./character-card.component.scss']
 })
 export class CharacterCardComponent implements OnInit{
- @Input() data: any;
-constructor(private store$: Store){
-
-}
+  @Input() data: any;
+  constructor(private store$: Store, private route: Router){
+  }
   ngOnInit(): void {
+  console.log(typeof this.data);
 
   }
   onClick(selectCharacter:any): void {
     this.store$.dispatch(characterActions.loadOneCharacter({oneCharacter: selectCharacter}));
+    this.route.navigateByUrl('character');
   }
 }

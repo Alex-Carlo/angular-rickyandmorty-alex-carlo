@@ -1,6 +1,6 @@
 export interface Character {
   info: Info;
-  results: Array<Result>;
+  results: Result[];
 }
 
 export interface Info {
@@ -17,10 +17,10 @@ export interface Result {
   species: string;
   type: string;
   gender: string;
-  origin: Array<Origin>;
-  location: Array<Location>;
+  origin: Origin;
+  location: Location;
   image: string;
-  episode:[];
+  episode: string[];
   url: string;
   created: string;
 }

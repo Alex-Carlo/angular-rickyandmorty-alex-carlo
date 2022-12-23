@@ -8,21 +8,23 @@ import { characterActions } from './character.actions';
 @Injectable()
 export class CharacterEffects {
   loadCharacterData$ = createEffect(() =>
-  this.actions$.pipe(
-      ofType(characterActions.loadCharacterData),
-      switchMap((params) => {
-          return from(this.serviceCharacter.getAllCharacter(params.page)).pipe(
-              map((response) =>
-                  characterActions.loadCharacterDataSuccess({
-                    data: response
-                  })
-              ),
-              catchError(() => of(characterActions.loadCharacterDataFailed()))
-          );
-      })
-  )
-);
-constructor(private actions$: Actions, private serviceCharacter: CharacterService){
+    this.actions$.pipe(
+        ofType(characterActions.loadCharacterData),
+        switchMap((params) => {
+            return from(this.serviceCharacter.getAllCharacter(params.page)).pipe(
+                map((response) =>
+                    characterActions.loadCharacterDataSuccess({
+                      data: response
+                    })
+                ),
+                catchError(() => of(characterActions.loadCharacterDataFailed()))
+            );
+        })
+    )
+  );
 
-}
+  constructor(private actions$: Actions,
+    private serviceCharacter: CharacterService){}
+
+
 }

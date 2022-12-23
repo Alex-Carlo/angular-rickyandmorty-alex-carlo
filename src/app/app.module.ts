@@ -19,6 +19,8 @@ import { ListCharactersComponent } from './pages/list-characters/list-characters
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { OneCharacterComponent } from './pages/one-character/one-character.component';
+import { MatListModule } from '@angular/material/list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     FooterComponent,
     HeaderComponent,
     HomeComponent,
-    ListCharactersComponent
+    ListCharactersComponent,
+    OneCharacterComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatMenuModule,
     MatButtonModule,
     MatToolbarModule,
+    MatListModule,
     StoreModule.forRoot(REDUCER_KEY),
     StoreDevtoolsModule.instrument({ name:'TEST' }),
     EffectsModule.forRoot([CharacterEffects])

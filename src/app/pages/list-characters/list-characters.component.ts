@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
+import { EpisodeService } from 'src/app/core/services/episode.service';
 import { characterActions } from 'src/app/state/characters/character.actions';
 import { selectDataCharacter, selectDataCharacterLoading, selectOneCharacter } from 'src/app/state/characters/character.selectors';
 
@@ -18,7 +19,7 @@ export class ListCharactersComponent implements OnInit, OnDestroy {
   characterSelected:any;
   isLoading:boolean;
   _destroy$: Subject<boolean> = new Subject<boolean>();
-  constructor(private store$: Store){
+  constructor(private store$: Store, private service: EpisodeService){
   }
 
   ngOnInit(): void {
@@ -33,6 +34,9 @@ export class ListCharactersComponent implements OnInit, OnDestroy {
     this.dataCharacterLoading$.pipe(takeUntil(this._destroy$)).subscribe((characterDataLoading) =>{
         this.isLoading = characterDataLoading;
         console.log(this.isLoading);
+    });
+    this.service.getOneEpisode(1).subscribe(data =>{
+      console.log(data);
     });
   }
 
