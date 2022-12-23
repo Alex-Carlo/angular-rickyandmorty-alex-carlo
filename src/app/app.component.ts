@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Subject, takeUntil } from 'rxjs';
 import { Character } from './core/interfaces/characters.interface';
 import { characterActions } from './state/characters/character.actions';
 import { selectDataCharacter, selectDataCharacterLoading, selectOneCharacter } from './state/characters/character.selectors';
@@ -9,30 +10,22 @@ import { selectDataCharacter, selectDataCharacterLoading, selectOneCharacter } f
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   character$ = this.store$.select(selectDataCharacter);
   oneCharacter$ = this.store$.select(selectOneCharacter);
   dataCharacterLoading$ = this.store$.select(selectDataCharacterLoading);
-  data:any;
-  paginatoOptions:any;
   characterSelected:any;
-  isLoading:boolean;
+  _destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(private store$: Store){
   }
   ngOnInit(): void {
-    this.store$.dispatch(characterActions.loadCharacterData({page:1}));
-    this.character$.subscribe(data => {
-      this.paginatoOptions = data.info;
-      this.data = data.results;
-    });
-    this.oneCharacter$.subscribe(data => {
+    this.oneCharacter$.pipe(takeUntil(this._destroy$)).subscribe(data => {
       this.characterSelected = data;
     });
-    this.dataCharacterLoading$.subscribe((characterDataLoading) =>{
-        this.isLoading = characterDataLoading;
-        console.log(this.isLoading);
-
-    });
+  }
+  ngOnDestroy(): void {
+    this._destroy$.next(true);
+    this._destroy$.complete();
   }
   handlePageEvent($event){
   this.store$.dispatch(characterActions.loadCharacterData({ page: $event.pageIndex + 1 }));
