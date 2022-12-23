@@ -1,0 +1,20 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>{{data.name}}</mat-card-title>
+      <mat-card-subtitle>{{data.air_date}}</mat-card-subtitle>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card-title>
+      Personajes que aparecieron en el episodio
+    </mat-card-title>
+    <mat-selection-list #episodes [multiple]="false">
+      <div *ngFor="let pe of character" [routerLink]="['/character', pe]">
+        <mat-list-option [value]="pe">
+          {{'Personajes ' + pe}}
+        </mat-list-option>
+      </div>
+    </mat-selection-list>
+  </mat-card-content>
+</mat-card>

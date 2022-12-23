@@ -10,10 +10,12 @@
     <mat-card-title>
       Lista de Episodios
     </mat-card-title>
-    <mat-selection-list #shoes [multiple]="false">
-      <mat-list-option *ngFor="let id of arrayData" [value]="id">
-        {{'Episode ' + id}}
-      </mat-list-option>
+    <mat-selection-list #episodes [multiple]="false">
+      <div *ngFor="let id of arrayData" (click)="onClick(id)" [routerLink]="['/episode', id]">
+        <mat-list-option [value]="id">
+          {{'Episode ' + id}}
+        </mat-list-option>
+      </div>
     </mat-selection-list>
   </mat-card-content>
 </mat-card>

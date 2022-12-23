@@ -19,8 +19,5 @@ export class CharacterCardComponent implements OnInit{
   console.log(typeof this.data);
 
   }
-  onClick(selectCharacter:any): void {
-    this.store$.dispatch(characterActions.loadOneCharacter({oneCharacter: selectCharacter}));
-    this.route.navigateByUrl('character');
-  }
+
 }

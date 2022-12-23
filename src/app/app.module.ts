@@ -21,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { OneCharacterComponent } from './pages/one-character/one-character.component';
 import { MatListModule } from '@angular/material/list';
+import { EpisodeComponent } from './pages/episode/episode.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { MatListModule } from '@angular/material/list';
     HeaderComponent,
     HomeComponent,
     ListCharactersComponent,
-    OneCharacterComponent
+    OneCharacterComponent,
+    EpisodeComponent
   ],
   imports: [
     BrowserModule,

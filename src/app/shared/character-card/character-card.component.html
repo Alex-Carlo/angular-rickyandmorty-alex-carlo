@@ -11,7 +11,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button (click)="onClick(item)">VER MAS INFO</button>
+      <button mat-button [routerLink]="['/character', item.id]">VER MAS INFO</button>
     </mat-card-actions>
   </mat-card>
 </div>

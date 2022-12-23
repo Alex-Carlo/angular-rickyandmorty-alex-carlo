@@ -17,3 +17,13 @@ export const selectOneCharacter = createSelector(
  selectFeature,
  (state: CharacterState) => state.oneCharacter
 );
+
+export const selectDataEpisode = createSelector(
+  selectFeature,
+  (state: CharacterState) => state.episodeData
+);
+
+export const selectDataCharacterEpisode = createSelector(
+  selectFeature,
+  (state: CharacterState) => state.dataCharacter
+);

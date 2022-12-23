@@ -5,11 +5,17 @@ export const CHARACTER_FEATURE_KEY = 'characters';
 export const initialCharacterState: CharacterState = {
   characterData: [],
   characterDataLoading: false,
-  oneCharacter: []
+  oneCharacter: [],
+  episodeData: [],
+  episodeDataLoading: false,
+  dataCharacter: []
 }
 
 export interface CharacterState {
   characterData: any;
   characterDataLoading: boolean;
   oneCharacter: any;
+  episodeData: any;
+  episodeDataLoading: boolean;
+  dataCharacter: any;
 }
