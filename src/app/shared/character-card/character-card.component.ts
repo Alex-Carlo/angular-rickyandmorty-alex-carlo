@@ -13,10 +13,9 @@ import { characterActions } from 'src/app/state/characters/character.actions';
 })
 export class CharacterCardComponent implements OnInit{
   @Input() data: any;
-  constructor(private store$: Store, private route: Router){
+  constructor(){
   }
   ngOnInit(): void {
-  console.log(typeof this.data);
 
   }
 

@@ -27,3 +27,23 @@ export const selectDataCharacterEpisode = createSelector(
   selectFeature,
   (state: CharacterState) => state.dataCharacter
 );
+
+export const selectCharacterMultiple= createSelector(
+  selectFeature,
+  (state: CharacterState) => state.charactersMultiple
+);
+
+export const selectCharacterMultipleLoading= createSelector(
+  selectFeature,
+  (state: CharacterState) => state.charactersMultipleLoading
+);
+
+export const selectEpisodesMultiple= createSelector(
+  selectFeature,
+  (state: CharacterState) => state.episodeMultiple
+);
+
+export const selectEpisodesMultipleLoading= createSelector(
+  selectFeature,
+  (state: CharacterState) => state.episodeMultipleLoading
+);

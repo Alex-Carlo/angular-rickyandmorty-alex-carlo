@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
 import { Episode } from '../interfaces/episode.interface';
 
@@ -15,11 +15,16 @@ export class EpisodeService {
     return this.http.get<Episode>(`${this.url}/episode/${id}`).pipe(map(this.transforDataEpisode));
   }
 
+  public getMultipleEpisodes(episodesId: string[]):Observable<Episode[]> {
+    const episode = episodesId.toString();
+    return this.http.get<Episode[]>(`${this.url}/episode/${episode}`);
+  }
+
   private transforDataEpisode(res:Episode):Episode{
     const transform: Episode = res;
     const result  = res.characters.map(el => {
       const character = el.split('/');
-      const id = character[5];
+      const id = character[character.length-1];
       return id
     });
     return {

@@ -19,7 +19,7 @@ export class ListCharactersComponent implements OnInit, OnDestroy {
   characterSelected:any;
   isLoading:boolean;
   _destroy$: Subject<boolean> = new Subject<boolean>();
-  constructor(private store$: Store, private service: EpisodeService){
+  constructor(private store$: Store){
   }
 
   ngOnInit(): void {
@@ -33,10 +33,6 @@ export class ListCharactersComponent implements OnInit, OnDestroy {
     });
     this.dataCharacterLoading$.pipe(takeUntil(this._destroy$)).subscribe((characterDataLoading) =>{
         this.isLoading = characterDataLoading;
-        console.log(this.isLoading);
-    });
-    this.service.getOneEpisode(1).subscribe(data =>{
-      console.log(data);
     });
   }
 

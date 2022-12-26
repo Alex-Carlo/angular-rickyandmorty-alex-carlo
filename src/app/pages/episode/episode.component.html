@@ -1,3 +1,4 @@
+<h1 *ngIf="isLoading">Cargando..</h1>
 <mat-card class="example-card">
   <mat-card-header>
     <mat-card-title-group>
@@ -9,10 +10,12 @@
     <mat-card-title>
       Personajes que aparecieron en el episodio
     </mat-card-title>
-    <mat-selection-list #episodes [multiple]="false">
-      <div *ngFor="let pe of character" [routerLink]="['/character', pe]">
-        <mat-list-option [value]="pe">
-          {{'Personajes ' + pe}}
+    <mat-selection-list #episodes [multiple]="false" *ngIf="!isLoading">
+      <div *ngFor="let ch of characterEpisode" [routerLink]="['/character', ch.id]">
+        <mat-list-option [value]="ch">
+
+          <img src="{{ch.image}}" alt="{{ch.name}}" height="100px">
+          {{ch.name}}
         </mat-list-option>
       </div>
     </mat-selection-list>

@@ -17,6 +17,12 @@ export class CharacterService {
       map(this.transforDataCharacter)
     );
   }
+
+  public getMultipleCharacter(charactersId: string[]):Observable<Result[]> {
+    const character = charactersId.toString();
+    return this.http.get<Result[]>(`${this.url}/character/${character}`);
+  }
+
   public getOneCharacter(id):Observable<Result>{
     return this.http.get<Result>(`${this.url}/character/${id}`).pipe(
       map(this.transforDataEpisode)
@@ -27,7 +33,7 @@ export class CharacterService {
     const result = transform.results.map(el=>{
       const idEpi = el.episode.map(ep => {
         const epi = ep.split('/');
-        const id = epi[5];
+        const id = epi[epi.length-1];
         return id
       });
       return{
@@ -45,7 +51,7 @@ export class CharacterService {
     const transform: Result = res;
     const result  = res.episode.map(el => {
       const character = el.split('/');
-      const id = character[5];
+      const id = character[character.length-1];
       return id
     });
     return {

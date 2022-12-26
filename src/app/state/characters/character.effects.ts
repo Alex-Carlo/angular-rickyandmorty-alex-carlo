@@ -54,6 +54,38 @@ export class CharacterEffects {
         })
     )
   );
+
+  loadCharacterMultiple$ = createEffect(() =>
+    this.actions$.pipe(
+        ofType(characterActions.loadCharacterMultiple),
+        switchMap((params) => {
+            return from(this.serviceCharacter.getMultipleCharacter(params.characterId)).pipe(
+                map((response) =>
+                    characterActions.loadCharacterMultipleSucces({
+                      data: response
+                    })
+                ),
+                catchError(() => of(characterActions.loadCharacterMultipleFailed()))
+            );
+        })
+    )
+  );
+
+  loadEpisodesMultiple$ = createEffect(() =>
+    this.actions$.pipe(
+        ofType(characterActions.loadEpisodesMultiple),
+        switchMap((params) => {
+            return from(this.serviceEpisode.getMultipleEpisodes(params.episodesId)).pipe(
+                map((response) =>
+                    characterActions.loadEpisodesMultipleSucces({
+                      data: response
+                    })
+                ),
+                catchError(() => of(characterActions.loadEpisodeDataFailed()))
+            );
+        })
+    )
+  );
   constructor(
     private actions$: Actions,
     private serviceCharacter: CharacterService,

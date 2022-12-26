@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Character } from 'src/app/core/interfaces/characters.interface';
+import { Character, Result } from 'src/app/core/interfaces/characters.interface';
 import { Episode } from 'src/app/core/interfaces/episode.interface';
 
 
@@ -15,7 +15,13 @@ export enum CharactersActionTypes {
   loadEpisodeDataFailed = `[Episode] Episode failed`,
   loadEpisodeWithCharacter = `[Episode] Load Episode with character`,
   loadEpisodeWithCharacterSucces = `[Episode] Load Episode with character succes`,
-  loadEpisodeWithCharacterFailed = `[Episode] Load Episode with character failed`
+  loadEpisodeWithCharacterFailed = `[Episode] Load Episode with character failed`,
+  loadCharacterMultiple = `[Episode] Load Character Multiple with character`,
+  loadCharacterMultipleSucces = `[Episode] Load Character Multiple succes`,
+  loadCharacterMultipleFailed = `[Episode] Character Multiple failed`,
+  loadEpisodesMultiple = `[Character] Load Episodes Multiple with character`,
+  loadEpisodesMultipleSucces = `[Character] Load Episodes Multiple succes`,
+  loadEpisodesMultipleFailed = `[Character] Episodes Multiple failed`
 }
 
 export const loadCharacterData = createAction(
@@ -64,6 +70,37 @@ export const loadEpisodeWithCharacterSucces = createAction(
 export const loadEpisodeWithCharacterFailed = createAction(
   CharactersActionTypes.loadEpisodeWithCharacterFailed
 );
+
+
+export const loadCharacterMultiple = createAction(
+  CharactersActionTypes.loadCharacterMultiple,
+  props<{ characterId: string[] }>()
+);
+
+export const loadCharacterMultipleSucces = createAction(
+  CharactersActionTypes.loadCharacterMultipleSucces,
+  props<{ data: Result[] }>()
+);
+
+export const loadCharacterMultipleFailed = createAction(
+  CharactersActionTypes.loadCharacterMultipleFailed
+);
+
+export const loadEpisodesMultiple = createAction(
+  CharactersActionTypes.loadEpisodesMultiple,
+  props<{ episodesId: string[] }>()
+);
+
+export const loadEpisodesMultipleSucces = createAction(
+  CharactersActionTypes.loadEpisodesMultipleSucces,
+  props<{ data: Episode[] }>()
+);
+
+export const loadEpisodesMultipleFailed = createAction(
+  CharactersActionTypes.loadEpisodesMultipleSucces
+);
+
+
 export const characterActions = {
   loadCharacterData,
   loadCharacterDataSuccess,
@@ -74,5 +111,11 @@ export const characterActions = {
   loadEpisodeDataFailed,
   loadEpisodeWithCharacter,
   loadEpisodeWithCharacterSucces,
-  loadEpisodeWithCharacterFailed
+  loadEpisodeWithCharacterFailed,
+  loadCharacterMultiple,
+  loadCharacterMultipleSucces,
+  loadCharacterMultipleFailed,
+  loadEpisodesMultiple,
+  loadEpisodesMultipleSucces,
+  loadEpisodesMultipleFailed
 }

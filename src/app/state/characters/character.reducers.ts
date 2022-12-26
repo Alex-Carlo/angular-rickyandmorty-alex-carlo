@@ -47,13 +47,38 @@ on(characterActions.loadEpisodeWithCharacterSucces, (state, { dataCharacter }) =
 on(characterActions.loadEpisodeWithCharacterFailed, (state) => ({
   ...state,
   episodeDataLoading: false
-}))
+})),
+on(characterActions.loadCharacterMultiple, (state) => ({
+  ...state,
+  charactersMultipleLoading: true
+})),
+on(characterActions.loadCharacterMultipleSucces, (state, { data }) => ({
+  ...state,
+  charactersMultipleLoading: false,
+  charactersMultiple: data
+})),
+on(characterActions.loadCharacterMultipleFailed, (state) => ({
+  ...state,
+  charactersMultipleLoading: false
+})),
+on(characterActions.loadEpisodesMultiple, (state) => ({
+  ...state,
+  episodeMultipleLoading: true
+})),
+on(characterActions.loadEpisodesMultipleSucces, (state, { data }) => ({
+  ...state,
+  episodeMultipleLoading: false,
+  episodeMultiple: data
+})),
+on(characterActions.loadEpisodesMultipleFailed, (state) => ({
+  ...state,
+  episodeMultipleLoading: false
+})),
 );
 
 export function pushDataCharacter(state ,dataCharacter:Character):Character[]{
-  let dataCharacterr = state.dataCharacter;
-  console.log(dataCharacterr);
-  return dataCharacterr;
+  const dataCharacterr = state.dataCharacter;
+  return [...dataCharacterr, dataCharacter];
  }
 
 

@@ -11,9 +11,9 @@
       Lista de Episodios
     </mat-card-title>
     <mat-selection-list #episodes [multiple]="false">
-      <div *ngFor="let id of arrayData" (click)="onClick(id)" [routerLink]="['/episode', id]">
-        <mat-list-option [value]="id">
-          {{'Episode ' + id}}
+      <div *ngFor="let pe of episode" (click)="onClick(pe.id)" [routerLink]="['/episode', pe.id]">
+        <mat-list-option [value]="pe">
+          {{'Episode ' + pe.name}}
         </mat-list-option>
       </div>
     </mat-selection-list>
